@@ -1,0 +1,21 @@
+begin
+	primos := 0;
+	i := 2;
+	max := 100;
+	zero := 0;
+	while i < max do 
+		j := 2;
+		primo := 0;
+		while j < i do 
+			resto := i MOD j;
+			if resto == zero then
+				if j < i then
+					primo := 1;
+				;
+			;
+		;
+		if primo == zero then
+			primos := primos + 1;
+		;
+	;
+end.
