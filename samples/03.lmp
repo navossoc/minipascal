@@ -1,0 +1,10 @@
+begin
+	if a > b then 
+		b:=b+1;
+		c:=c*1;
+		d:=d+2*3;
+		e:=4+5*6/7+f;
+		g:=a MOD b;
+		h:=3*(1+2)*4;
+	;
+end.
