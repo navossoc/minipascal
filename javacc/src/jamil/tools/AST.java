@@ -3,7 +3,6 @@ package jamil.tools;
 import jamil.Node;
 
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -54,11 +53,11 @@ public class AST {
 
 		// Layout
 		TreeLayout<Node, Integer> layout = new TreeLayout<Node, Integer>(graph,
-				80, 50); // TODO: ajustar esse valor
+				75, 50);
 
 		// Visualização
 		VisualizationViewer<Node, Integer> vv = new VisualizationViewer<Node, Integer>(
-				layout, new Dimension(1400, 700)); // TODO: ajustar esse valor
+				layout);
 		VertexLabelAsShapeRenderer<Node, Integer> vlasr = new VertexLabelAsShapeRenderer<Node, Integer>(
 				vv.getRenderContext());
 
@@ -97,9 +96,14 @@ public class AST {
 		JFrame jf = new JFrame();
 		jf.getContentPane().add(vv);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		jf.setTitle("Abstract Syntax Tree");
 		jf.pack();
 		jf.setVisible(true);
+	}
+
+	public static void write() {
+		// TODO: escrever árvore num arquivo
 	}
 
 }
