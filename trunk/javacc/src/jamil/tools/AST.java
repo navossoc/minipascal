@@ -1,4 +1,6 @@
-package jamil;
+package jamil.tools;
+
+import jamil.Node;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,26 +23,26 @@ import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.VertexLabelAsShapeRenderer;
 
-public class ASTRenderer {
+public class AST {
 
 	// Árvore Sintática Abstrata
-	int edge = 0;
-	DelegateTree<Node, Integer> graph;
+	static int edge = 0;
+	static DelegateTree<Node, Integer> graph;
 
-	private void createTree(Node node) {
+	private static void build(Node node) {
 		for (int i = 0; i < node.jjtGetNumChildren(); i++) {
 			{
 				Node n = node.jjtGetChild(i);
 				if (n != null) {
 					graph.addChild(edge++, node, n);
-					createTree(n);
+					build(n);
 				}
 			}
 		}
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void drawTree(Node tree) {
+	public static void render(Node tree) {
 		// Grafo
 		Factory<DirectedGraph<Node, Integer>> factory = DirectedOrderedSparseMultigraph
 				.<Node, Integer> getFactory();
@@ -48,7 +50,7 @@ public class ASTRenderer {
 
 		// Adiciona os vértices ao grafo
 		graph.addVertex(tree);
-		createTree(tree);
+		build(tree);
 
 		// Layout
 		TreeLayout<Node, Integer> layout = new TreeLayout<Node, Integer>(graph,
