@@ -3,7 +3,6 @@ package jamil.tools;
 import jamil.Node;
 
 import java.awt.Color;
-
 import javax.swing.JFrame;
 
 import org.apache.commons.collections15.Factory;
@@ -94,11 +93,12 @@ public class AST {
 
 		// Cria a janela do JFrame
 		JFrame jf = new JFrame();
+		JFrame.setDefaultLookAndFeelDecorated(true);
 		jf.getContentPane().add(vv);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		jf.setTitle("Abstract Syntax Tree");
 		jf.pack();
+		jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		jf.setVisible(true);
 	}
 
