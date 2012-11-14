@@ -1,0 +1,9 @@
+begin
+	max := 12;
+	cont := 1;
+	fatorial := 1;
+	while cont <= max do
+		fatorial := fatorial * cont;
+		cont := cont + 1;
+	;
+end.
