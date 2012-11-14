@@ -1,12 +1,16 @@
 /**
  * JJTree template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
- */options{  JDK_VERSION = "1.5";  NODE_CLASS = "SimpleNode2";  static = false;}PARSER_BEGIN(LMP)package jamil;import jamil.tools.AST;import jamil.tools.Report;import jamil.tools.Symbols;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.InputStream;public class LMP{  public static void main(String args [])  {    try    {      final String filename = "../samples/01.lmp";      // Leitura do arquivo
+ */options{  JDK_VERSION = "1.5";  NODE_CLASS = "SimpleNode2";  static = false;}PARSER_BEGIN(LMP)package jamil;import jamil.tools.AST;import jamil.tools.Report;import jamil.tools.Symbols;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.InputStream;import javax.swing.JFileChooser;import javax.swing.JOptionPane;public class LMP{  public static void main(String args [])  {    try    {      // Janela para abrir o arquivo
+      String filename; // = "..\\samples\\01.lmp";
+      JFileChooser fileChooser = new JFileChooser();      // Exibe o diálogo de abrir
+      if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)      {        filename = fileChooser.getSelectedFile().getAbsolutePath();      }      else      {        JOptionPane.showMessageDialog(null, "É necessário selecionar um arquivo para continuar", "Erro", JOptionPane.ERROR_MESSAGE);        return;      }      // Leitura do arquivo
       InputStream in = new FileInputStream(filename);      // Inicializa o compilador
       LMP parser = new LMP(in);      Node tree = parser.inicio();      // Extração e classificação dos tokens
-      Report.generate(filename);      // Tabela de símbolos
-      Symbols.print();      // Árvore sintática abstrata
-      AST.render(tree);
-    }    catch (FileNotFoundException ex)    {      System.out.println("Arquivo não encontrado");      System.out.println(ex.toString());    }    catch (ParseException e)    {      Token t = e.currentToken.next;      System.out.format("Linha %03d, coluna %03d: %s - '%s'\n", t.beginLine, t.beginColumn, e.getMessage(), t.image);    }  }  private void addNode(String value)  {    jjtree.pushNode(new SimpleNode2(value));  }  private ParseException createException(ParseException e, String message)  {    ParseException ex = new ParseException(message);    ex.currentToken = e.currentToken;    ex.expectedTokenSequences = e.expectedTokenSequences;    ex.tokenImage = e.tokenImage;    return ex;  }}PARSER_END(LMP)SKIP : /* Caracteres ignorados */{  " " // space
+      //Report.generate(filename);
+      Report.write(filename, "tokens.txt");      // Tabela de símbolos
+      //Symbols.print();
+      Symbols.write("ids.txt");      // Árvore sintática abstrata
+      AST.render(tree);      AST.write(tree, "arvore.txt");    }    catch (FileNotFoundException ex)    {      System.out.println("Arquivo não encontrado");      System.out.println(ex.toString());    }    catch (ParseException e)    {      Token t = e.currentToken.next;      System.out.format("Linha %03d, coluna %03d: %s - '%s'\n", t.beginLine, t.beginColumn, e.getMessage(), t.image);    }  }  private void addNode(String value)  {    jjtree.pushNode(new SimpleNode2(value));  }  private ParseException createException(ParseException e, String message)  {    ParseException ex = new ParseException(message);    ex.currentToken = e.currentToken;    ex.expectedTokenSequences = e.expectedTokenSequences;    ex.tokenImage = e.tokenImage;    return ex;  }}PARSER_END(LMP)SKIP : /* Caracteres ignorados */{  " " // space
 | "\t" // tab
 | "\n" // line feed
 | "\r" // carriage return
