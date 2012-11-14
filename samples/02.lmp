@@ -3,7 +3,7 @@ begin
 	i := 2;
 	max := 100;
 	zero := 0;
-	while i < max do 
+	while i <= max do 
 		j := 2;
 		primo := 0;
 		while j < i do 
@@ -13,9 +13,11 @@ begin
 					primo := 1;
 				;
 			;
+			j := j + 1;
 		;
 		if primo == zero then
 			primos := primos + 1;
 		;
+		i := i + 1;
 	;
 end.
