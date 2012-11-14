@@ -93,9 +93,8 @@ public class AST {
 
 		// Cria a janela do JFrame
 		JFrame jf = new JFrame();
-		JFrame.setDefaultLookAndFeelDecorated(true);
 		jf.getContentPane().add(vv);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setTitle("Abstract Syntax Tree");
 		jf.pack();
 		jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
