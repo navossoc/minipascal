@@ -21,13 +21,26 @@ public class SimpleNode2 extends SimpleNode {
 
 		if (children != null) {
 			for (int i = 0; i < children.length; ++i) {
-				SimpleNode n = (SimpleNode) children[i];
+				SimpleNode2 n = (SimpleNode2) children[i];
 				if (n != null) {
 					n.dump(prefix + " ");
 				}
 			}
 		}
 	}
+	
+	public void dump(String prefix, StringBuilder sb) {
+		sb.append((toString(prefix)) + "\n");
+
+		if (children != null) {
+			for (int i = 0; i < children.length; ++i) {
+				SimpleNode2 n = (SimpleNode2) children[i];
+				if (n != null) {
+					n.dump(prefix + "\t", sb);
+				}
+			}
+		}
+	}	
 
 	@Override
 	public String toString() {

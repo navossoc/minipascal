@@ -1,8 +1,15 @@
 package jamil.tools;
 
 import jamil.Node;
+import jamil.SimpleNode2;
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JFrame;
 
 import org.apache.commons.collections15.Factory;
@@ -101,8 +108,36 @@ public class AST {
 		jf.setVisible(true);
 	}
 
-	public static void write() {
-		// TODO: escrever árvore num arquivo
+	public static boolean write(Node tree, String filename) {
+
+		FileWriter fw;
+		try {
+			fw = new FileWriter(filename);
+		} catch (IOException ex) {
+			return false;
+		}
+
+		BufferedWriter bw = new BufferedWriter(fw);
+		try {
+
+			bw.write("Árvore Sintática Abstrata");
+			bw.newLine();
+			bw.newLine();
+
+			// Árvore
+			StringBuilder sb = new StringBuilder();
+			((SimpleNode2) tree).dump("", sb);
+			bw.write(sb.toString());
+
+			bw.close();
+
+			return true;
+		} catch (IOException ex) {
+			Logger.getLogger(Symbols.class.getName()).log(Level.SEVERE, null,
+					ex);
+		}
+
+		return false;
 	}
 
 }
