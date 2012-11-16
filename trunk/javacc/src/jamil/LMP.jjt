@@ -47,7 +47,11 @@ Node inicio() :{}{  < BEGIN >  {    addNode("begin");  }  comando() < END
  * Declaração da sintaxe de uma condicional
  */void condicional() :{}{  < IF >  {    addNode("if");  }  condicao() < THEN >  {    addNode("then");  }  (    /*
      * Altera o Lookahead para 2 (LL(2)) localmente devido a repetição de atribuicao()
-     */    LOOKAHEAD(2)    atribuicao()  )*  comando() < SEMICOLON >  {    addNode(";");  }  {    return;  }}/**
+     */    LOOKAHEAD(2)    atribuicao()  )*  comando() < SEMICOLON >  {    addNode(";");  }
+  /*
+   * É necessário inserir este bloco contendo o return para garantir que o nó da árvore
+   * não fosse fechado antes de adicionar os nós filhos.
+   */  {    return;  }}/**
  * Declaração da sintaxe de um iterativo
  */void iterativo() :{}{  < WHILE >  {    addNode("while");  }  condicao() < DO >  {    addNode("do");  }  (    /*
      * Altera o Lookahead para 2 (LL(2)) localmente devido a repetição de atribuicao()
