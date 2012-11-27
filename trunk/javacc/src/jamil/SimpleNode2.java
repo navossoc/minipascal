@@ -30,7 +30,7 @@ public class SimpleNode2 extends SimpleNode {
 	}
 	
 	public void dump(String prefix, StringBuilder sb) {
-		sb.append((toString(prefix)) + "\n");
+		sb.append((toString(prefix)) + "\r\n");
 
 		if (children != null) {
 			for (int i = 0; i < children.length; ++i) {
